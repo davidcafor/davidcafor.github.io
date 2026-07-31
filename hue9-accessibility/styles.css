@@ -296,14 +296,22 @@ main {
   overflow: visible;
   border: 0;
   border-radius: 44px;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.12), rgba(255, 249, 238, 0.08) 54%, transparent 72%),
-    url("assets/hue9-accessibility-social.png");
-  background-position: center, right center;
-  background-repeat: no-repeat;
-  background-size: auto, auto 76%;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.14), rgba(255, 249, 238, 0.06) 56%, transparent 74%);
   box-shadow: none;
   isolation: isolate;
+}
+
+.hero-symbol-art {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 36px;
+  filter: drop-shadow(0 28px 32px rgba(63, 48, 27, 0.1));
 }
 
 .symbol-cloud {
@@ -1377,12 +1385,7 @@ footer p {
   }
 
   .hero-art {
-    background:
-      linear-gradient(145deg, rgba(30, 29, 27, 0.3), rgba(30, 29, 27, 0.46)),
-      url("assets/hue9-accessibility-social.png");
-    background-position: center, right center;
-    background-repeat: no-repeat;
-    background-size: auto, auto 76%;
+    background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.08), rgba(30, 29, 27, 0.08) 58%, transparent 76%);
   }
 
   .feature-symbols,
