@@ -1,67 +1,105 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hue9 Privacy Policy</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 40px auto; max-width: 860px; line-height: 1.55; padding: 0 16px; color: #222; }
-    h1, h2 { line-height: 1.2; }
-    code { background: #f4f4f4; padding: 2px 6px; border-radius: 6px; }
-    .muted { color: #666; }
-  </style>
-</head>
-<body>
-  <h1>Privacy Policy</h1>
-  <p class="muted">Last updated: 2026-02-12</p>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f2ede4">
+    <meta name="description" content="Learn how Hue9 handles gameplay, purchase, analytics and leaderboard data.">
+    <title>Hue9 Privacy Policy</title>
+    <link rel="icon" href="assets/hue9-icon.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html" data-preserve-language>
+        <img src="assets/hue9-icon.png" alt="" width="42" height="42">
+        <span data-i18n="brand">Hue9 Legal</span>
+      </a>
+      <nav class="main-nav" data-i18n-aria="navLabel" aria-label="Legal navigation">
+        <a href="index.html" data-preserve-language data-i18n="navHome">Legal</a>
+        <a href="privacy.html" data-preserve-language data-i18n="navPrivacy" aria-current="page">Privacy</a>
+        <a href="terms.html" data-preserve-language data-i18n="navTerms">Terms</a>
+        <a href="../hue9-accessibility/" data-preserve-language data-i18n="navAccessibility">Accessibility</a>
+      </nav>
+      <label class="language-wrap">
+        <span class="skip-link" data-i18n="languageLabel">Language</span>
+        <select id="language-select" aria-label="Language" data-i18n-aria="languageLabel">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="ja">日本語</option>
+          <option value="zh-Hans">简体中文</option>
+        </select>
+      </label>
+    </header>
 
-  <p>This Privacy Policy describes how <strong>Hue9</strong> ("the App") handles your data.</p>
+    <main id="main">
+      <section class="hero">
+        <p class="eyebrow" data-i18n="heroEyebrow">Hue9 · Privacy</p>
+        <h1 data-i18n="heroTitle">Privacy,<br>made visible.</h1>
+        <p class="hero-intro" data-i18n="heroIntro">A clear account of what Hue9 processes, why it is needed, where it goes and the choices available to you.</p>
+        <div class="hero-meta">
+          <span class="meta-pill" data-i18n="updated">Last updated · 31 July 2026</span>
+          <span class="meta-pill" data-i18n="noTracking">No cross-app tracking</span>
+          <span class="meta-pill" data-i18n="applies">Applies to Hue9 for iPhone and iPad</span>
+        </div>
+      </section>
 
-  <h2>1. Data We Process</h2>
-  <ul>
-    <li>Gameplay data: scores, solved boards, play time, hints, mistakes, level/XP progression, and daily challenge results.</li>
-    <li>Purchase status: whether your premium entitlement is active.</li>
-    <li>Game Center identity: player identifier/display name when available for leaderboards.</li>
-  </ul>
+      <section class="summary-grid" aria-label="Privacy summary">
+        <article class="summary-card"><span class="summary-mark"></span><h2 data-i18n="summary1Title">Your data is not sold.</h2><p data-i18n="summary1Body">Hue9 does not sell personal data or use it for third-party advertising.</p></article>
+        <article class="summary-card"><span class="summary-mark"></span><h2 data-i18n="summary2Title">Gameplay stays useful.</h2><p data-i18n="summary2Body">Progress is stored on device and may sync through iCloud.</p></article>
+        <article class="summary-card"><span class="summary-mark"></span><h2 data-i18n="summary3Title">Analytics improve the app.</h2><p data-i18n="summary3Body">Product interaction and technical context help improve reliability.</p></article>
+      </section>
 
-  <h2>2. Where Data Is Stored</h2>
-  <ul>
-    <li><strong>On device</strong>: app preferences and local progress.</li>
-    <li><strong>iCloud Key-Value</strong>: preference/progress sync across your Apple devices when iCloud is enabled.</li>
-    <li><strong>Firebase (Google Cloud)</strong>: Daily Challenge puzzle of the day and submitted daily leaderboard entries.</li>
-    <li><strong>RevenueCat</strong>: subscription/purchase entitlement state.</li>
-    <li><strong>Apple Game Center</strong>: leaderboard submissions and ranking data.</li>
-  </ul>
+      <div class="document-shell">
+        <aside class="toc">
+          <p class="toc-title" data-i18n="tableOfContents">On this page</p>
+          <ol>
+            <li><a href="#data"><span>01</span><span data-i18n="toc1">Data processed</span></a></li>
+            <li><a href="#storage"><span>02</span><span data-i18n="toc2">Storage and providers</span></a></li>
+            <li><a href="#use"><span>03</span><span data-i18n="toc3">How data is used</span></a></li>
+            <li><a href="#sharing"><span>04</span><span data-i18n="toc4">Sharing</span></a></li>
+            <li><a href="#analytics"><span>05</span><span data-i18n="toc5">Analytics and tracking</span></a></li>
+            <li><a href="#retention"><span>06</span><span data-i18n="toc6">Retention and deletion</span></a></li>
+            <li><a href="#choices"><span>07</span><span data-i18n="toc7">Your choices and rights</span></a></li>
+            <li><a href="#children"><span>08</span><span data-i18n="toc8">Children</span></a></li>
+            <li><a href="#changes"><span>09</span><span data-i18n="toc9">Changes and contact</span></a></li>
+          </ol>
+        </aside>
+        <article class="legal-document">
+          <div class="document-notice" data-i18n="notice">This policy reflects the data practices of the current App Store version of Hue9.</div>
+          <section class="legal-section" id="data"><span class="section-number">01</span><div class="section-content"><h2 data-i18n="p1Title">Data Hue9 processes</h2><div data-i18n="p1Body"></div></div></section>
+          <section class="legal-section" id="storage"><span class="section-number">02</span><div class="section-content"><h2 data-i18n="p2Title">Where data is stored and processed</h2><div data-i18n="p2Body"></div></div></section>
+          <section class="legal-section" id="use"><span class="section-number">03</span><div class="section-content"><h2 data-i18n="p3Title">Why the data is used</h2><div data-i18n="p3Body"></div></div></section>
+          <section class="legal-section" id="sharing"><span class="section-number">04</span><div class="section-content"><h2 data-i18n="p4Title">When data is shared</h2><div data-i18n="p4Body"></div></div></section>
+          <section class="legal-section" id="analytics"><span class="section-number">05</span><div class="section-content"><h2 data-i18n="p5Title">Analytics without advertising tracking</h2><div data-i18n="p5Body"></div></div></section>
+          <section class="legal-section" id="retention"><span class="section-number">06</span><div class="section-content"><h2 data-i18n="p6Title">Retention and deletion</h2><div data-i18n="p6Body"></div></div></section>
+          <section class="legal-section" id="choices"><span class="section-number">07</span><div class="section-content"><h2 data-i18n="p7Title">Your choices and rights</h2><div data-i18n="p7Body"></div></div></section>
+          <section class="legal-section" id="children"><span class="section-number">08</span><div class="section-content"><h2 data-i18n="p8Title">Children’s privacy</h2><div data-i18n="p8Body"></div></div></section>
+          <section class="legal-section" id="changes"><span class="section-number">09</span><div class="section-content"><h2 data-i18n="p9Title">Policy changes and contact</h2><div data-i18n="p9Body"></div></div></section>
+        </article>
+      </div>
 
-  <h2>3. How We Use Data</h2>
-  <ul>
-    <li>Provide core gameplay and save your progress.</li>
-    <li>Enable premium access and restore purchases.</li>
-    <li>Display leaderboard rankings and daily challenge competition.</li>
-    <li>Improve app reliability and diagnose technical issues.</li>
-  </ul>
+      <section class="legal-cta">
+        <h2 data-i18n="contactTitle">Questions about Hue9?</h2>
+        <p data-i18n="contactBody">For privacy, legal or support requests, contact Hue9 through the official support channel.</p>
+        <a class="button" href="mailto:davidcafor@gmail.com?subject=Hue9%20Privacy%20Request" data-i18n="contactButton">Contact support</a>
+      </section>
+    </main>
 
-  <h2>4. Data Sharing</h2>
-  <p>We do not sell personal data. Data is only shared with service providers required to run the app features (Apple/Game Center, iCloud, RevenueCat, Firebase/Google Cloud).</p>
-
-  <h2>5. Retention</h2>
-  <p>Data is retained while needed for app functionality. You can delete local data from the app settings; synced/cloud data related to those records is also removed where applicable by the app flow.</p>
-
-  <h2>6. Your Choices</h2>
-  <ul>
-    <li>Disable Game Center in iOS settings.</li>
-    <li>Disable iCloud sync in your Apple settings.</li>
-    <li>Do not purchase premium features.</li>
-    <li>Use in-app reset to remove your saved app progress.</li>
-  </ul>
-
-  <h2>7. Children's Privacy</h2>
-  <p>The app is not directed to children under the age required by your local laws for consent to data processing.</p>
-
-  <h2>8. Changes to This Policy</h2>
-  <p>We may update this policy. Updates will be posted at this URL with a new "Last updated" date.</p>
-
-  <h2>9. Contact</h2>
-  <p>For privacy questions, contact us through the official support channel listed on the App Store product page for Hue9.</p>
-</body>
+    <footer>
+      <span><span data-i18n="copyright">© Hue9</span> · <span data-i18n="footerTagline">Clear rules for a game of pure logic.</span></span>
+      <nav>
+        <a href="privacy.html" data-preserve-language data-i18n="navPrivacy">Privacy</a>
+        <a href="terms.html" data-preserve-language data-i18n="navTerms">Terms</a>
+        <a href="../hue9-accessibility/" data-preserve-language data-i18n="navAccessibility">Accessibility</a>
+        <a href="https://apps.apple.com/app/id6758043250" data-i18n="appStore">App Store</a>
+      </nav>
+    </footer>
+    <script src="privacy-translations.js"></script>
+    <script src="common.js"></script>
+  </body>
 </html>
