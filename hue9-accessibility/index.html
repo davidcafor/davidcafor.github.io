@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4efe6">
+    <meta name="color-scheme" content="light dark">
+    <meta
+      name="description"
+      content="Discover the accessibility features in Hue9: Color Sudoku, including Symbol Mode, VoiceOver, Larger Text, Increased Contrast, Dark Mode and Reduce Motion."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hue9 Accessibility — Sudoku beyond color">
+    <meta
+      property="og:description"
+      content="Symbols, spoken context, scalable text and calmer motion make every Hue9 puzzle easier to read and understand."
+    >
+    <meta property="og:image" content="https://davidcafor.github.io/hue9-accessibility/assets/hue9-accessibility-social.png">
+    <meta property="og:url" content="https://davidcafor.github.io/hue9-accessibility/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hue9 Accessibility — Sudoku beyond color">
+    <meta
+      name="twitter:description"
+      content="Symbols, spoken context, scalable text and calmer motion make every Hue9 puzzle easier to read and understand."
+    >
+    <meta name="twitter:image" content="https://davidcafor.github.io/hue9-accessibility/assets/hue9-accessibility-social.png">
+    <link rel="icon" href="assets/hue9-accessible-icon.png">
+    <link rel="apple-touch-icon" href="assets/hue9-accessible-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hue9 Accessibility — Sudoku beyond color</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Hue9 Accessibility home">
+        <img src="assets/hue9-accessible-icon.png" alt="" width="44" height="44">
+        <span>Hue9</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation" data-i18n-aria="navLabel">
+        <a href="#features" data-i18n="navFeatures">Features</a>
+        <a href="#enable" data-i18n="navEnable">How to enable</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="language-switcher">
+        <span aria-hidden="true">◎</span>
+        <select id="language-select" aria-label="Language" data-i18n-aria="languageLabel">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="ja">日本語</option>
+          <option value="zh-Hans">简体中文</option>
+        </select>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">Accessibility in Hue9</p>
+          <h1 id="hero-title" data-i18n="heroTitle">Sudoku beyond color.</h1>
+          <p class="hero-intro" data-i18n="heroIntro">
+            Hue9 is designed so color is never the only way to play. Symbols, spoken context,
+            scalable text and calmer motion keep every puzzle readable, understandable and yours.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#features" data-i18n="explore">Explore the features</a>
+            <a
+              class="button secondary"
+              href="https://apps.apple.com/app/id6758043250"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="appStore"
+            >View on the App Store</a>
+          </div>
+          <ul class="feature-pills" aria-label="Supported accessibility features" data-i18n-aria="supportedLabel">
+            <li data-i18n="pillVoiceOver">VoiceOver</li>
+            <li data-i18n="pillSymbols">Symbol Mode</li>
+            <li data-i18n="pillText">Larger Text</li>
+            <li data-i18n="pillMotion">Reduce Motion</li>
+            <li data-i18n="pillContrast">Increased Contrast</li>
+          </ul>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="symbol-cloud">
+            <span class="game-symbol symbol-circle"></span>
+            <span class="game-symbol symbol-triangle"></span>
+            <span class="game-symbol symbol-square"></span>
+            <span class="game-symbol symbol-diamond"></span>
+            <span class="game-symbol symbol-star">★</span>
+            <span class="game-symbol symbol-plus">+</span>
+            <span class="game-symbol symbol-cross">×</span>
+            <span class="game-symbol symbol-slash">╱</span>
+            <span class="game-symbol symbol-pause">Ⅱ</span>
+          </div>
+          <div class="hero-caption">
+            <span data-i18n="heroCaptionSmall">Nine colors.</span>
+            <strong data-i18n="heroCaptionLarge">Nine unmistakable symbols.</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="principle" aria-labelledby="principle-title">
+        <p class="eyebrow" data-i18n="principleEyebrow">Designed with a second language</p>
+        <h2 id="principle-title" data-i18n="principleTitle">
+          Color creates the puzzle.<br>It never has to carry it alone.
+        </h2>
+        <p data-i18n="principleBody">
+          Accessibility is part of Hue9’s game design, not a layer added afterwards. Every state
+          that color communicates has another cue: shape, position, contrast, text or speech.
+        </p>
+      </section>
+
+      <section class="features-section" id="features" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="featuresEyebrow">Made for different ways of playing</p>
+          <h2 id="features-title" data-i18n="featuresTitle">A board that meets you where you are.</h2>
+        </div>
+
+        <article class="feature feature-symbols">
+          <div class="feature-copy">
+            <span class="feature-number">01</span>
+            <p class="feature-kicker" data-i18n="symbolsKicker">Differentiate Without Color</p>
+            <h3 data-i18n="symbolsTitle">Every color has a second language.</h3>
+            <p data-i18n="symbolsBody">
+              Symbol Mode pairs each of Hue9’s nine colors with a unique shape. The board, color
+              selector, pencil notes and visual feedback remain understandable without relying on
+              hue alone — while the original colors stay visible.
+            </p>
+            <p class="system-note" data-i18n="symbolsSystem">
+              Hue9 also responds automatically to the iOS “Differentiate Without Color” setting.
+            </p>
+          </div>
+          <figure class="real-board-shot">
+            <div class="real-board-window">
+              <img
+                src="assets/hue9-symbol-mode-board.png"
+                alt="A real Hue9 game board using nine colors paired with nine distinct symbols."
+                data-i18n-alt="symbolScreenshotAlt"
+                width="1170"
+                height="2532"
+                loading="lazy"
+              >
+            </div>
+            <figcaption>
+              <span data-i18n="symbolScreenshotLabel">Actual in-game board</span>
+              <strong data-i18n="symbolScreenshotMode">Symbol Mode · iPhone</strong>
+            </figcaption>
+          </figure>
+        </article>
+
+        <div class="feature-grid">
+          <article class="feature-card voiceover-card">
+            <div class="card-icon" aria-hidden="true">◉</div>
+            <p class="feature-kicker" data-i18n="voiceKicker">VoiceOver</p>
+            <h3 data-i18n="voiceTitle">The whole board, in words.</h3>
+            <p data-i18n="voiceBody">
+              Every cell identifies its row and column, then announces its value, pencil notes and
+              current state. Controls have meaningful labels, and important game results are spoken
+              when they happen.
+            </p>
+            <div class="voice-sample" aria-hidden="true">
+              <span data-i18n="voiceSampleLabel">Row 4, column 7</span>
+              <strong data-i18n="voiceSampleValue">Blue triangle, selected</strong>
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </article>
+
+          <article class="feature-card text-card">
+            <div class="card-icon text-icon" aria-hidden="true">Aa</div>
+            <p class="feature-kicker" data-i18n="textKicker">Larger Text</p>
+            <h3 data-i18n="textTitle">Built to flex, not clip.</h3>
+            <p data-i18n="textBody">
+              Hue9 supports Dynamic Type throughout the app. Navigation, settings, onboarding and
+              game information adapt as text size increases, with layouts that reflow when space is
+              limited.
+            </p>
+            <div class="type-scale" aria-hidden="true">
+              <span>A</span><span>A</span><span>A</span><span>A</span>
+            </div>
+          </article>
+
+          <article class="feature-card motion-card">
+            <div class="card-icon" aria-hidden="true">≈</div>
+            <p class="feature-kicker" data-i18n="motionKicker">Reduce Motion</p>
+            <h3 data-i18n="motionTitle">Less motion. Same meaning.</h3>
+            <p data-i18n="motionBody">
+              With Reduce Motion enabled, entrance movement, pulsing cues, shakes and celebration
+              effects are removed or replaced with brief fades. Feedback remains clear without
+              demanding movement.
+            </p>
+            <div class="motion-demo" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+          </article>
+
+          <article class="feature-card contrast-card">
+            <div class="card-icon" aria-hidden="true">◐</div>
+            <p class="feature-kicker" data-i18n="contrastKicker">Contrast & appearance</p>
+            <h3 data-i18n="contrastTitle">Comfortable in every light.</h3>
+            <p data-i18n="contrastBody">
+              Light, Dark and System appearances work across common tasks. Increased Contrast
+              strengthens key boundaries and controls, while carefully chosen themes keep the
+              board legible.
+            </p>
+            <div class="contrast-demo" aria-hidden="true">
+              <span></span><span></span>
+            </div>
+          </article>
+        </div>
+
+        <article class="zen-feature">
+          <div class="zen-mark" aria-hidden="true">
+            <span></span>
+          </div>
+          <div>
+            <p class="feature-kicker" data-i18n="zenKicker">Zen Mode</p>
+            <h3 data-i18n="zenTitle">A quieter place to think.</h3>
+            <p data-i18n="zenBody">
+              Zen Mode removes the timer, level, hints and other competitive signals from the game
+              screen. It leaves the puzzle and its essential controls, reducing visual pressure
+              without changing the logic.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="enable-section" id="enable" aria-labelledby="enable-title">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="enableEyebrow">Make Hue9 yours</p>
+          <h2 id="enable-title" data-i18n="enableTitle">Turn features on in a few taps.</h2>
+          <p data-i18n="enableIntro">
+            Hue9 follows your iOS accessibility settings automatically. Symbol Mode and Zen Mode
+            can also be selected directly inside the app.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <span class="step-number">1</span>
+            <div>
+              <h3 data-i18n="stepSymbolTitle">Symbol Mode in Hue9</h3>
+              <p data-i18n="stepSymbolBody">
+                Open Hue9 → Settings → Accessibility → Symbol Mode. You can also change it from
+                the settings button during a game.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">2</span>
+            <div>
+              <h3 data-i18n="stepSystemTitle">iOS accessibility settings</h3>
+              <p data-i18n="stepSystemBody">
+                Open iOS Settings → Accessibility to configure VoiceOver, Display & Text Size,
+                Motion and Differentiate Without Color.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">3</span>
+            <div>
+              <h3 data-i18n="stepZenTitle">Zen Mode</h3>
+              <p data-i18n="stepZenBody">
+                Open Hue9 → Settings → Play Style → Zen Mode. Choose any difficulty and play
+                without timers, levels or hints on screen.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="commitment" aria-labelledby="commitment-title">
+        <div>
+          <p class="eyebrow" data-i18n="commitmentEyebrow">An ongoing practice</p>
+          <h2 id="commitment-title" data-i18n="commitmentTitle">Accessibility is never “finished.”</h2>
+        </div>
+        <div>
+          <p data-i18n="commitmentBody">
+            Hue9 is tested on iPhone and iPad with Apple’s accessibility settings, including
+            hands-on VoiceOver navigation. Real-world feedback matters even more. If something is
+            difficult to perceive, understand or operate, please tell me.
+          </p>
+          <p class="small-note" data-i18n="commitmentNote">
+            Accessibility support can vary by device, iOS version, language and text size.
+          </p>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <img src="assets/hue9-accessible-icon.png" alt="" width="96" height="96">
+        <p class="eyebrow" data-i18n="contactEyebrow">Help shape what comes next</p>
+        <h2 id="contact-title" data-i18n="contactTitle">Found an accessibility barrier?</h2>
+        <p data-i18n="contactBody">
+          Tell me what happened, which device and iOS version you use, and which accessibility
+          settings were active. Every report helps make Hue9 better.
+        </p>
+        <a
+          class="button primary"
+          href="mailto:davidcafor@gmail.com?subject=Hue9%20Accessibility%20Feedback"
+          data-i18n="contactButton"
+        >Send accessibility feedback</a>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <strong>Hue9: Color Sudoku</strong>
+        <span data-i18n="footerTagline">Pure logic, expressed your way.</span>
+      </div>
+      <nav aria-label="Legal links" data-i18n-aria="legalLabel">
+        <a href="https://davidcafor.github.io/hue9-legal/privacy.html" data-i18n="privacy">Privacy</a>
+        <a href="https://davidcafor.github.io/hue9-legal/terms.html" data-i18n="terms">Terms</a>
+        <a href="mailto:davidcafor@gmail.com?subject=Hue9%20Feedback" data-i18n="support">Support</a>
+      </nav>
+      <p>© <span id="year">2026</span> David Cardeña Formoso</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
