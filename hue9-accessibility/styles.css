@@ -737,8 +737,6 @@ main {
 
 .feature-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   min-height: 520px;
   padding: clamp(28px, 4.3vw, 56px);
@@ -778,7 +776,6 @@ main {
 .feature-card .card-icon {
   display: grid;
   place-items: center;
-  flex: none;
   width: 56px;
   height: 56px;
   margin-bottom: 80px;
@@ -810,10 +807,6 @@ main {
   color: var(--ink-soft);
 }
 
-.voiceover-card > p:not(.feature-kicker) {
-  margin-bottom: 54px;
-}
-
 .voiceover-card .card-icon {
   color: white;
   border-color: var(--blue);
@@ -825,9 +818,8 @@ main {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
   align-items: center;
-  flex: none;
   gap: 14px;
-  margin-top: auto;
+  margin-top: 54px;
   padding: 14px 16px;
   border: 1px solid rgba(50, 104, 207, 0.24);
   border-radius: 18px;
@@ -881,10 +873,6 @@ main {
     rgba(255, 252, 245, 0.82);
 }
 
-.text-card > p:not(.feature-kicker) {
-  margin-bottom: 72px;
-}
-
 .text-icon {
   font-family: Georgia, serif;
 }
@@ -893,8 +881,7 @@ main {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  flex: none;
-  margin-top: auto;
+  margin-top: 80px;
   color: rgba(36, 36, 34, 0.75);
   font-weight: 760;
 }
@@ -911,16 +898,11 @@ main {
     rgba(255, 252, 245, 0.82);
 }
 
-.motion-card > p:not(.feature-kicker) {
-  margin-bottom: 64px;
-}
-
 .motion-demo {
   display: flex;
   align-items: center;
-  flex: none;
   gap: 18px;
-  margin-top: auto;
+  margin-top: 72px;
 }
 
 .motion-demo span {
