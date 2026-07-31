@@ -899,6 +899,8 @@ main {
 .type-scale span:nth-child(4) { font-size: 105px; line-height: 1; }
 
 .motion-card {
+  min-height: 580px;
+  padding-bottom: 128px;
   background:
     radial-gradient(circle at 90% 7%, rgba(59, 159, 164, 0.2), transparent 15rem),
     rgba(255, 252, 245, 0.82);
@@ -907,7 +909,7 @@ main {
 .motion-demo {
   position: absolute;
   right: 42px;
-  bottom: 48px;
+  bottom: 40px;
   left: 42px;
   display: flex;
   align-items: center;
@@ -929,30 +931,6 @@ main {
   background:
     radial-gradient(circle at 90% 7%, rgba(128, 84, 223, 0.18), transparent 15rem),
     rgba(255, 252, 245, 0.82);
-}
-
-.contrast-demo {
-  position: absolute;
-  right: 40px;
-  bottom: 42px;
-  display: flex;
-  overflow: hidden;
-  width: 134px;
-  height: 68px;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-}
-
-.contrast-demo span {
-  flex: 1;
-}
-
-.contrast-demo span:first-child {
-  background: var(--ink);
-}
-
-.contrast-demo span:last-child {
-  background: white;
 }
 
 .zen-feature {
