@@ -940,13 +940,14 @@ main {
   min-height: 430px;
   margin-top: 18px;
   padding: clamp(34px, 6vw, 76px);
-  border: 1px solid rgba(36, 36, 34, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  color: var(--ink);
+  color: #fffaf1;
   background:
-    radial-gradient(circle at 14% 50%, rgba(242, 118, 46, 0.16), transparent 18rem),
-    rgba(255, 252, 245, 0.84);
+    radial-gradient(circle at 14% 50%, rgba(242, 118, 46, 0.22), transparent 19rem),
+    radial-gradient(circle at 88% 8%, rgba(77, 184, 185, 0.18), transparent 22rem),
+    #163c3d;
   gap: 70px;
   isolation: isolate;
 }
@@ -958,7 +959,7 @@ main {
   right: -8%;
   width: 68%;
   height: 67%;
-  border: 1px solid rgba(59, 159, 164, 0.3);
+  border: 1px solid rgba(132, 218, 215, 0.34);
   border-radius: 50%;
   transform: rotate(13deg);
   content: "";
@@ -966,7 +967,7 @@ main {
 
 .zen-feature .feature-kicker,
 .zen-feature p {
-  color: var(--ink-soft);
+  color: #d3e5e1;
 }
 
 .zen-feature p:last-child {
@@ -981,7 +982,7 @@ main {
   width: min(100%, 310px);
   aspect-ratio: 1;
   margin: auto;
-  border: 1px solid rgba(36, 36, 34, 0.18);
+  border: 1px solid rgba(255, 250, 241, 0.34);
   border-radius: 50%;
 }
 
@@ -997,7 +998,7 @@ main {
 .zen-mark::before {
   width: 170px;
   height: 170px;
-  border: 1px solid rgba(36, 36, 34, 0.25);
+  border: 1px solid rgba(255, 250, 241, 0.46);
 }
 
 .zen-mark::after {
@@ -1010,7 +1011,7 @@ main {
 .zen-mark span {
   width: 240px;
   height: 82px;
-  border: 1px solid rgba(59, 159, 164, 0.62);
+  border: 1px solid rgba(132, 218, 215, 0.78);
   transform: rotate(-12deg);
 }
 
