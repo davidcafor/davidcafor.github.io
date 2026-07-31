@@ -295,13 +295,13 @@ main {
   min-height: 590px;
   overflow: visible;
   border: 0;
-  border-radius: 50%;
+  border-radius: 44px;
   background:
     radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.12), rgba(255, 249, 238, 0.08) 54%, transparent 72%),
     url("assets/hue9-accessibility-social.png");
-  background-position: center, 73% center;
+  background-position: center, right center;
   background-repeat: no-repeat;
-  background-size: auto, auto 94%;
+  background-size: auto, auto 76%;
   box-shadow: none;
   isolation: isolate;
 }
@@ -1380,9 +1380,9 @@ footer p {
     background:
       linear-gradient(145deg, rgba(30, 29, 27, 0.3), rgba(30, 29, 27, 0.46)),
       url("assets/hue9-accessibility-social.png");
-    background-position: center, 73% center;
+    background-position: center, right center;
     background-repeat: no-repeat;
-    background-size: auto, auto 94%;
+    background-size: auto, auto 76%;
   }
 
   .feature-symbols,
