@@ -7,9 +7,11 @@ import { site } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
+  wide?: boolean;
 }
 
-const { title = site.name, description = site.role } = Astro.props;
+const { title = site.name, description = site.role, wide = false } = Astro.props;
+const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
 ---
 
 <!doctype html>
@@ -33,14 +35,17 @@ const { title = site.name, description = site.role } = Astro.props;
     </script>
   </head>
   <body>
-    <header class="wrap top">
-      <a href="/" class="mono home"><span class="prompt">~/</span>{site.handle}</a>
-      <ThemeToggle />
+    <header class:list={['wrap top', { wide }]}>
+      <a href="/" class="mono home"><span class="prompt">~/</span>{site.handle}{onMap && '/map'}</a>
+      <nav class="mono">
+        {!onMap && <a href="/map" class="nav-link">map</a>}
+        <ThemeToggle />
+      </nav>
     </header>
-    <main class="wrap">
+    <main class:list={['wrap', { wide }]}>
       <slot />
     </main>
-    <footer class="wrap foot mono muted">
+    <footer class:list={['wrap foot mono muted', { wide }]}>
       <span>© {new Date().getFullYear()} {site.name}</span>
       <span>{site.location}</span>
     </footer>
@@ -57,6 +62,21 @@ const { title = site.name, description = site.role } = Astro.props;
   main {
     flex: 1;
     width: 100%;
+  }
+  .wide {
+    max-width: 1040px;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .nav-link {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .nav-link:hover {
+    color: var(--fg);
   }
   .prompt {
     color: var(--accent);
