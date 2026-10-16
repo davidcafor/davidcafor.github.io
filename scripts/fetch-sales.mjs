@@ -49,6 +49,7 @@ for (let a = 65; a <= 90; a++)
 const toCode = (seg) => {
   for (const v of [seg?.id, seg?.code, seg?.display_name, seg?.name]) {
     if (typeof v !== 'string') continue;
+    if (v === 'UK') return 'GB'; // RevenueCat uses UK; ISO 3166 (and the map) use GB
     if (/^[A-Z]{2}$/.test(v)) return v;
     const hit = byName.get(v.toLowerCase());
     if (hit) return hit;
