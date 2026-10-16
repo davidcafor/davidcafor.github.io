@@ -4,8 +4,6 @@
   --muted: #6b6a66;
   --line: #e2e0d9;
   --accent: #c8841a;
-  --ascii: #cfccc3;
-  --surface: rgb(246 245 241 / 0.7);
   --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   color-scheme: light;
 }
@@ -17,8 +15,6 @@
     --muted: #8a8984;
     --line: #232322;
     --accent: #e3a33c;
-    --ascii: #2b2b29;
-    --surface: rgb(11 11 11 / 0.6);
     color-scheme: dark;
   }
 }
@@ -29,8 +25,6 @@
   --muted: #8a8984;
   --line: #232322;
   --accent: #e3a33c;
-  --ascii: #2b2b29;
-  --surface: rgb(11 11 11 / 0.6);
   color-scheme: dark;
 }
 

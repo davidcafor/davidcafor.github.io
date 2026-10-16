@@ -1,7 +1,6 @@
 ---
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
-import AsciiBackground from '../components/AsciiBackground.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import { site } from '../data/site';
 
@@ -34,7 +33,6 @@ const { title = site.name, description = site.role } = Astro.props;
     </script>
   </head>
   <body>
-    <AsciiBackground />
     <header class="wrap top">
       <a href="/" class="mono home"><span class="prompt">~/</span>{site.handle}</a>
       <ThemeToggle />
