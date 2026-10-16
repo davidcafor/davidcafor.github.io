@@ -43,14 +43,14 @@ for (let a = 65; a <= 90; a++)
   for (let b = 65; b <= 90; b++) {
     const code = String.fromCharCode(a, b);
     const name = names.of(code);
-    if (name && name !== code) byName.set(name.toLowerCase(), code);
+    // First code wins, so names shared by an exceptional code (UK for GB) keep the ISO one.
+    if (name && name !== code && !byName.has(name.toLowerCase())) byName.set(name.toLowerCase(), code);
   }
 
 const toCode = (seg) => {
   for (const v of [seg?.id, seg?.code, seg?.display_name, seg?.name]) {
     if (typeof v !== 'string') continue;
-    if (v === 'UK') return 'GB'; // RevenueCat uses UK; ISO 3166 (and the map) use GB
-    if (/^[A-Z]{2}$/.test(v)) return v;
+    if (/^[A-Z]{2}$/.test(v)) return v === 'UK' ? 'GB' : v; // ISO 3166 and the map use GB
     const hit = byName.get(v.toLowerCase());
     if (hit) return hit;
   }
