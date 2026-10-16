@@ -1,0 +1,50 @@
+<button class="toggle mono" type="button" aria-label="Toggle dark mode">
+  <span class="when-light">[ dark ]</span>
+  <span class="when-dark">[ light ]</span>
+</button>
+
+<style>
+  .toggle {
+    background: none;
+    border: 0;
+    padding: 4px 0;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .toggle:hover {
+    color: var(--fg);
+  }
+  .when-dark {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .when-dark {
+    display: inline;
+  }
+  :global(:root[data-theme='dark']) .when-light {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .when-dark {
+      display: inline;
+    }
+    :global(:root:not([data-theme='light'])) .when-light {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const isDark = () =>
+    root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+
+  document.querySelector('.toggle')?.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+</script>

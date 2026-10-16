@@ -1,0 +1,162 @@
+---
+import Base from '../layouts/Base.astro';
+import AppStoreQR from '../components/AppStoreQR.astro';
+import { site } from '../data/site';
+import { apps, secretApps } from '../data/apps';
+---
+
+<Base>
+  <section class="hero">
+    <h1>{site.name}<span class="cursor" aria-hidden="true">_</span></h1>
+    <p class="muted">{site.role}</p>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Apps</h2>
+    <ul class="apps">
+      {
+        apps.map((app) => (
+          <li class="app">
+            <img class="icon" src={app.icon} alt="" width="48" height="48" loading="lazy" />
+            <div>
+              <h3>
+                <a href={app.appStore} target="_blank" rel="noopener noreferrer">
+                  {app.name}
+                </a>
+                <span class="mono muted"> · {app.tagline} · {app.platforms}</span>
+              </h3>
+              <p>{app.description}</p>
+              <p class="mono links">
+                {app.links.map((link) => (
+                  <a href={link.href}>{link.label}</a>
+                ))}
+              </p>
+              <AppStoreQR url={app.appStore} />
+            </div>
+          </li>
+        ))
+      }
+      {
+        Array.from({ length: secretApps }, () => (
+          <li class="app secret">
+            <span class="icon placeholder mono" aria-hidden="true">
+              ?
+            </span>
+            <div>
+              <h3>
+                Secret app<span class="mono muted"> · classified</span>
+              </h3>
+              <p class="redacted" aria-label="Details hidden">
+                <span style="width: 70%" />
+                <span style="width: 45%" />
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Contact</h2>
+    <p class="mono links">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      {site.links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </p>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 72px 0 8px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+  .cursor {
+    font-family: var(--mono);
+    font-weight: 400;
+    color: var(--accent);
+    margin-left: 2px;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  .hero p {
+    margin: 0;
+  }
+  .block {
+    margin-top: 72px;
+  }
+  .apps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 36px;
+  }
+  .app {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 11px;
+    border: 1px solid var(--line);
+  }
+  .placeholder {
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    background: var(--surface);
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+  h3 .mono {
+    font-weight: 400;
+  }
+  h3 a {
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--accent);
+  }
+  .app p {
+    margin: 4px 0 0;
+  }
+  .redacted {
+    display: grid;
+    gap: 8px;
+    padding-top: 6px;
+  }
+  .redacted span {
+    display: block;
+    height: 12px;
+    border-radius: 2px;
+    background: var(--line);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+  }
+  .links a {
+    color: var(--muted);
+  }
+  .links a:hover {
+    color: var(--fg);
+  }
+</style>
