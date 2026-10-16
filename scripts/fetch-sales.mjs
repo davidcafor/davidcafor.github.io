@@ -84,6 +84,8 @@ try {
   });
 
   const segments = chart.segments ?? [];
+  // Shape of the response, to check the parser against (country names and totals only).
+  console.log(`Chart: ${segments.length} segments (${segments.slice(0, 5).map((s) => s.display_name ?? s.id).join(', ')}…), ${chart.values?.length ?? 0} values; first: ${JSON.stringify((chart.values ?? []).slice(0, 2))}`);
   const first = new Map(); // code -> earliest date with revenue
 
   const record = (segIndex, when, value) => {
@@ -100,8 +102,8 @@ try {
       // [timestamp, value for segment 0, value for segment 1, ...]
       row.slice(1).forEach((v, i) => record(i, row[0], v));
     } else if (row && typeof row === 'object') {
-      // { cohort: timestamp, measure|segment: index, value }
-      record(row.measure ?? row.segment ?? row.segment_index, row.cohort ?? row.date ?? row.timestamp, row.value);
+      // { cohort: timestamp, segment: index, measure: which metric, value }
+      record(row.segment ?? row.segment_index ?? row.measure, row.cohort ?? row.date ?? row.timestamp, row.value);
     }
   }
 
