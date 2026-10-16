@@ -63,7 +63,13 @@ const mapHtml = rows
   <section class="intro">
     <h1 class="label">Sales map</h1>
     <p>Every <span class="on">#</span> is a country where someone has bought one of my apps. The map redraws itself as new countries join.</p>
-    {sales.sample && <p class="sample mono">[ sample data · not real sales yet ]</p>}
+    {
+      sales.error ? (
+        <p class="sample mono">[ error loading data · showing {sales.sample ? 'sample' : 'last saved'} data ]</p>
+      ) : (
+        sales.sample && <p class="sample mono">[ sample data · not real sales yet ]</p>
+      )
+    }
   </section>
 
   <div class="layout">

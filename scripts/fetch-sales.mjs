@@ -4,7 +4,7 @@
 //
 // Env: REVENUECAT_API_KEY (v2 secret key with Charts & Metrics read access)
 //      REVENUECAT_PROJECT_ID (optional: found automatically when the key sees one project)
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const OUT = new URL('../src/data/sales.json', import.meta.url);
 const API = 'https://api.revenuecat.com/v2';
@@ -14,8 +14,15 @@ const key = process.env.REVENUECAT_API_KEY;
 // Accepts the id from the dashboard URL (app.revenuecat.com/projects/<id>/...) with or without "proj".
 let project = process.env.REVENUECAT_PROJECT_ID?.trim().replace(/^(?!proj)/, 'proj') || undefined;
 
+// Keeps the existing data but flags it, so the page says the live data failed to load.
+const markError = async () => {
+  const data = JSON.parse(await readFile(OUT, 'utf8'));
+  await writeFile(OUT, JSON.stringify({ ...data, error: true }, null, 2) + '\n');
+};
+
 if (!key) {
-  console.log('No RevenueCat API key; keeping the existing sales data.');
+  console.log('::warning::No RevenueCat API key; keeping the existing sales data.');
+  await markError();
   process.exit(0);
 }
 
@@ -113,4 +120,5 @@ try {
   console.log(`Wrote ${countries.length} countries; latest ${countries.at(-1).code} on ${countries.at(-1).since}.`);
 } catch (err) {
   console.log(`::warning::RevenueCat sales map not updated: ${err.message}`);
+  await markError();
 }
