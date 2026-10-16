@@ -82,7 +82,7 @@ const mapHtml = rows
         {
           latest && (
             <>
-              <dt>latest</dt>
+              <dt>newest</dt>
               <dd>
                 <span class="on">#</span> {countryName(latest.code)}{' '}
                 <span class="muted">· {latest.since}</span>
@@ -189,6 +189,13 @@ const mapHtml = rows
     margin: 0;
     min-width: 0;
   }
+  /* Fixed width, one line: long names never resize or reflow the summary. */
+  .hover {
+    width: 30ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .big {
     font-size: 22px;
     line-height: 1;
@@ -207,6 +214,9 @@ const mapHtml = rows
     dt,
     dd {
       grid-row: auto;
+    }
+    .hover {
+      width: auto;
     }
   }
 </style>
