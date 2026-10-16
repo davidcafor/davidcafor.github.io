@@ -2,9 +2,9 @@ export const site = {
   name: 'David Cardeña',
   handle: 'davidcafor',
   role: 'Indie developer building small, careful apps for Apple platforms.',
-  location: 'Galicia, Spain',
-  email: 'davidcafor@icloud.com',
+  location: 'A Coruña, Spain',
   links: [
-    { label: 'GitHub', href: 'https://github.com/davidcafor' },
+    { label: 'Twitter', handle: '@davidcafor', href: 'https://x.com/davidcafor' },
+    { label: 'GitHub', handle: 'davidcafor', href: 'https://github.com/davidcafor' },
   ],
 };

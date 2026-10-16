@@ -6,8 +6,7 @@
   --accent: #c8841a;
   --ascii: #cfccc3;
   --surface: rgb(246 245 241 / 0.7);
-  --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
-  --sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   color-scheme: light;
 }
 
@@ -49,9 +48,13 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font: 16px/1.6 var(--sans);
+  font: 15px/1.7 var(--mono);
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.2s, color 0.2s;
+}
+
+button {
+  font: inherit;
 }
 
 a {
@@ -78,9 +81,7 @@ a:hover {
 }
 
 .mono {
-  font-family: var(--mono);
   font-size: 13px;
-  letter-spacing: 0.01em;
 }
 
 .muted {
@@ -95,6 +96,11 @@ a:hover {
   color: var(--muted);
   margin: 0 0 20px;
   font-weight: 400;
+}
+
+.label::before {
+  content: '// ';
+  color: var(--accent);
 }
 
 @media (prefers-reduced-motion: reduce) {

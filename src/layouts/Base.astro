@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import AsciiBackground from '../components/AsciiBackground.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
@@ -35,7 +36,7 @@ const { title = site.name, description = site.role } = Astro.props;
   <body>
     <AsciiBackground />
     <header class="wrap top">
-      <a href="/" class="mono home">{site.handle}</a>
+      <a href="/" class="mono home"><span class="prompt">~/</span>{site.handle}</a>
       <ThemeToggle />
     </header>
     <main class="wrap">
@@ -49,7 +50,21 @@ const { title = site.name, description = site.role } = Astro.props;
 </html>
 
 <style>
+  :global(body) {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1;
+    width: 100%;
+  }
+  .prompt {
+    color: var(--accent);
+  }
   .top {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,12 +75,13 @@ const { title = site.name, description = site.role } = Astro.props;
     text-decoration: none;
   }
   .foot {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 28px;
+    padding-bottom: 28px;
     margin-top: 72px;
     border-top: 1px solid var(--line);
   }

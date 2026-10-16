@@ -5,7 +5,6 @@ export type App = {
   platforms: string;
   icon: string;
   appStore: string;
-  links: { label: string; href: string }[];
 };
 
 export const apps: App[] = [
@@ -17,11 +16,6 @@ export const apps: App[] = [
     platforms: 'iOS',
     icon: '/hue9-legal/assets/hue9-icon.png',
     appStore: 'https://apps.apple.com/app/hue9-sudoku-de-colores/id6758043250',
-    links: [
-      { label: 'Accessibility', href: '/hue9-accessibility/' },
-      { label: 'Privacy', href: '/hue9-legal/privacy.html' },
-      { label: 'Terms', href: '/hue9-legal/terms.html' },
-    ],
   },
 ];
 

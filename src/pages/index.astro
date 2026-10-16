@@ -1,12 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
-import AppStoreQR from '../components/AppStoreQR.astro';
 import { site } from '../data/site';
 import { apps, secretApps } from '../data/apps';
 ---
 
 <Base>
   <section class="hero">
+    <p class="mono muted cmd" aria-hidden="true"><span class="prompt">$</span> whoami</p>
     <h1>{site.name}<span class="cursor" aria-hidden="true">_</span></h1>
     <p class="muted">{site.role}</p>
   </section>
@@ -26,12 +26,6 @@ import { apps, secretApps } from '../data/apps';
                 <span class="mono muted"> · {app.tagline} · {app.platforms}</span>
               </h3>
               <p>{app.description}</p>
-              <p class="mono links">
-                {app.links.map((link) => (
-                  <a href={link.href}>{link.label}</a>
-                ))}
-              </p>
-              <AppStoreQR url={app.appStore} />
             </div>
           </li>
         ))
@@ -59,10 +53,18 @@ import { apps, secretApps } from '../data/apps';
 
   <section class="block">
     <h2 class="label">Contact</h2>
-    <p class="mono links">
-      <a href={`mailto:${site.email}`}>{site.email}</a>
-      {site.links.map((link) => <a href={link.href}>{link.label}</a>)}
-    </p>
+    <ul class="contact">
+      {
+        site.links.map((link) => (
+          <li>
+            <span class="muted">{link.label}</span>
+            <a href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.handle}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Base>
 
@@ -70,11 +72,17 @@ import { apps, secretApps } from '../data/apps';
   .hero {
     padding: 72px 0 8px;
   }
+  .cmd {
+    margin: 0 0 10px;
+  }
+  .prompt {
+    color: var(--accent);
+  }
   h1 {
-    font-size: 32px;
+    font-size: 30px;
     line-height: 1.2;
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     margin: 0 0 8px;
   }
   .cursor {
@@ -121,7 +129,7 @@ import { apps, secretApps } from '../data/apps';
     background: var(--surface);
   }
   h3 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     margin: 0;
   }
@@ -148,15 +156,18 @@ import { apps, secretApps } from '../data/apps';
     border-radius: 2px;
     background: var(--line);
   }
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
+  .contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
   }
-  .links a {
-    color: var(--muted);
+  .contact li {
+    display: grid;
+    grid-template-columns: 9ch 1fr;
   }
-  .links a:hover {
-    color: var(--fg);
+  .contact a:hover {
+    color: var(--accent);
   }
 </style>
