@@ -7,10 +7,9 @@ import { site } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
-  wide?: boolean;
 }
 
-const { title = site.name, description = site.role, wide = false } = Astro.props;
+const { title = site.name, description = site.role } = Astro.props;
 const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
 ---
 
@@ -35,17 +34,17 @@ const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
     </script>
   </head>
   <body>
-    <header class:list={['wrap top', { wide }]}>
+    <header class="wrap top">
       <a href="/" class="mono home"><span class="prompt">~/</span>{site.handle}{onMap && '/map'}</a>
       <nav class="mono">
         {!onMap && <a href="/map" class="nav-link">map</a>}
         <ThemeToggle />
       </nav>
     </header>
-    <main class:list={['wrap', { wide }]}>
+    <main class="wrap">
       <slot />
     </main>
-    <footer class:list={['wrap foot mono muted', { wide }]}>
+    <footer class="wrap foot mono muted">
       <span>© {new Date().getFullYear()} {site.name}</span>
       <span>{site.location}</span>
     </footer>
@@ -62,9 +61,6 @@ const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
   main {
     flex: 1;
     width: 100%;
-  }
-  .wide {
-    max-width: 1280px;
   }
   nav {
     display: flex;

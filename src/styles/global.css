@@ -72,7 +72,8 @@ a:hover {
 }
 
 .wrap {
-  max-width: 640px;
+  /* One width for every page, so the header path and footer never move. */
+  max-width: 960px;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;

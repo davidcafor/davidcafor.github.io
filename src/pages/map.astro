@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { buildGrid, COLS, countryName, toCell } from '../lib/worldGrid';
 import sales from '../data/sales.json';
+import { appStoreCountries } from '../data/appStoreCountries';
 
 const HOME = { label: 'a coruña ─', lon: -8.41, lat: 43.37 };
 
@@ -16,8 +17,10 @@ const latest = [...sales.countries].sort((a, b) => b.since.localeCompare(a.since
 // Each cell becomes { ch, cls, code }; runs of identical cells are merged into one span.
 type Cell = { ch: string; cls: string; code: string };
 const grid = buildGrid();
-const total = new Set(grid.flat().filter(Boolean)).size;
-const pct = Math.round((sold.size / total) * 100);
+// Progress counts only where the App Store exists, so selling everywhere reads as 100%.
+const total = appStoreCountries.length;
+const soldInStore = appStoreCountries.filter((c) => sold.has(c)).length;
+const pct = Math.round((soldInStore / total) * 100);
 const cells: Cell[][] = grid.map((row) =>
   row.map((code) =>
     !code ? { ch: SEA, cls: '', code } : sold.has(code) ? { ch: SOLD, cls: 'on', code } : { ch: LAND, cls: 'land', code },
@@ -59,7 +62,7 @@ const mapHtml = rows
 
 ---
 
-<Base title="Sales map · David Cardeña" description="Every country where someone has bought one of my apps." wide>
+<Base title="Sales map · David Cardeña" description="Every country where someone has bought one of my apps.">
   <section class="intro">
     <h1 class="label">Sales map</h1>
     <p>Every <span class="on">#</span> is a country where someone has bought one of my apps. The map redraws itself as new countries join.</p>
@@ -82,7 +85,7 @@ const mapHtml = rows
       <dl>
         <dt>countries</dt>
         <dd>
-          <span class="big">{sold.size}</span><span class="muted">/{total}</span>
+          <span class="big">{soldInStore}</span><span class="muted">/{total}</span>
           <span class="muted"> · {pct}%</span>
         </dd>
         {
