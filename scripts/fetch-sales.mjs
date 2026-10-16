@@ -3,7 +3,7 @@
 // or if anything goes wrong, it leaves the existing file untouched so the deploy still works.
 //
 // Env: REVENUECAT_API_KEY (v2 secret key with Charts & Metrics read access)
-//      REVENUECAT_PROJECT_ID
+//      REVENUECAT_PROJECT_ID (optional: found automatically when the key sees one project)
 import { writeFile } from 'node:fs/promises';
 
 const OUT = new URL('../src/data/sales.json', import.meta.url);
@@ -11,21 +11,22 @@ const API = 'https://api.revenuecat.com/v2';
 const START = '2023-01-01';
 
 const key = process.env.REVENUECAT_API_KEY;
-const project = process.env.REVENUECAT_PROJECT_ID;
+let project = process.env.REVENUECAT_PROJECT_ID;
 
-if (!key || !project) {
-  console.log('No RevenueCat credentials; keeping the existing sales data.');
+if (!key) {
+  console.log('No RevenueCat API key; keeping the existing sales data.');
   process.exit(0);
 }
 
-const get = async (path, params = {}) => {
-  const url = new URL(`${API}/projects/${project}${path}`);
+const request = async (path, params = {}) => {
+  const url = new URL(`${API}${path}`);
   for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
   const res = await fetch(url, { headers: { Authorization: `Bearer ${key}` } });
   const body = await res.text();
   if (!res.ok) throw new Error(`${res.status} on ${url.pathname}: ${body.slice(0, 500)}`);
   return JSON.parse(body);
 };
+const get = (path, params) => request(`/projects/${project}${path}`, params);
 
 // Country names -> ISO alpha-2, in case segments are labelled by name rather than code.
 const names = new Intl.DisplayNames(['en'], { type: 'region' });
@@ -53,6 +54,14 @@ const toDate = (t) => {
 };
 
 try {
+  if (!project) {
+    const list = await request('/projects');
+    const ids = (list.items ?? []).map((p) => p.id);
+    if (ids.length !== 1) throw new Error(`set REVENUECAT_PROJECT_ID; the key sees ${ids.length} projects: ${ids.join(', ')}`);
+    project = ids[0];
+    console.log(`Using RevenueCat project ${project}.`);
+  }
+
   const options = await get('/charts/revenue/options');
   const day = options.resolutions?.find((r) => /day/i.test(r.display_name ?? r.id))?.id ?? '0';
   if (!options.segments?.some((s) => s.id === 'country'))
