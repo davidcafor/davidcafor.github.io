@@ -11,7 +11,8 @@ const API = 'https://api.revenuecat.com/v2';
 const START = '2023-01-01';
 
 const key = process.env.REVENUECAT_API_KEY;
-let project = process.env.REVENUECAT_PROJECT_ID;
+// Accepts the id from the dashboard URL (app.revenuecat.com/projects/<id>/...) with or without "proj".
+let project = process.env.REVENUECAT_PROJECT_ID?.trim().replace(/^(?!proj)/, 'proj') || undefined;
 
 if (!key) {
   console.log('No RevenueCat API key; keeping the existing sales data.');
