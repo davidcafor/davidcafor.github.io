@@ -23,6 +23,15 @@
   :global(:root[data-theme='dark']) .when-light {
     display: none;
   }
+  /* Let the circular reveal replace the default cross-fade, and skip colour transitions under it. */
+  :global(::view-transition-old(root)),
+  :global(::view-transition-new(root)) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  :global(.theme-switching *) {
+    transition: none !important;
+  }
   @media (prefers-color-scheme: dark) {
     :global(:root:not([data-theme='light'])) .when-dark {
       display: inline;
@@ -40,11 +49,31 @@
       ? root.dataset.theme === 'dark'
       : matchMedia('(prefers-color-scheme: dark)').matches;
 
-  document.querySelector('.toggle')?.addEventListener('click', () => {
+  const toggle = document.querySelector<HTMLButtonElement>('.toggle');
+
+  toggle?.addEventListener('click', () => {
     const next = isDark() ? 'light' : 'dark';
-    root.dataset.theme = next;
-    try {
-      localStorage.setItem('theme', next);
-    } catch {}
+    const apply = () => {
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem('theme', next);
+      } catch {}
+    };
+
+    // The new theme grows as a circle from the toggle, where supported.
+    if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) return apply();
+    const r = toggle.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    root.classList.add('theme-switching');
+    const t = document.startViewTransition(apply);
+    t.ready.then(() =>
+      root.animate(
+        { clipPath: [`circle(0 at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+        { duration: 550, easing: 'cubic-bezier(.4, 0, .2, 1)', pseudoElement: '::view-transition-new(root)' },
+      ),
+    );
+    t.finished.finally(() => root.classList.remove('theme-switching'));
   });
 </script>
