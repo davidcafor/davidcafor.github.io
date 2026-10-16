@@ -4,7 +4,7 @@
   --muted: #6b6a66;
   --line: #e2e0d9;
   --accent: #c8841a;
-  --land: #bdb8ac;
+  --land: #9e998d;
   --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   color-scheme: light;
 }
@@ -16,7 +16,7 @@
     --muted: #8a8984;
     --line: #232322;
     --accent: #e3a33c;
-    --land: #4a4945;
+    --land: #6a6863;
     color-scheme: dark;
   }
 }
@@ -27,7 +27,7 @@
   --muted: #8a8984;
   --line: #232322;
   --accent: #e3a33c;
-  --land: #4a4945;
+  --land: #6a6863;
   color-scheme: dark;
 }
 
@@ -73,7 +73,7 @@ a:hover {
 
 .wrap {
   /* One width for every page, so the header path and footer never move. */
-  max-width: 960px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;

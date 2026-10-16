@@ -9,8 +9,8 @@ countries.registerLocale(en);
 // A monospace character cell is twice as tall as it is wide, so rows cover
 // twice as many degrees as columns to keep the map's proportions.
 export const GRID = {
-  lonStep: 1.5,
-  latStep: 3,
+  lonStep: 0.75,
+  latStep: 1.5,
   west: -180,
   east: 180,
   north: 84,
