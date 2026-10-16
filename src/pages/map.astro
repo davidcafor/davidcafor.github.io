@@ -1,91 +1,102 @@
 ---
 import Base from '../layouts/Base.astro';
-import { buildDots, COLS, ROWS, countryName, toGrid } from '../lib/worldGrid';
+import { buildGrid, COLS, countryName, toCell } from '../lib/worldGrid';
 import sales from '../data/sales.json';
 
-const HOME = { name: 'A Coruña', lon: -8.41, lat: 43.37 };
+const HOME = { label: 'a coruña ─', lon: -8.41, lat: 43.37 };
+
+const SEA = ' ';
+const LAND = ':';
+const SOLD = '#';
+const PIN = '@';
 
 const sold = new Set(sales.countries.map((c) => c.code));
-const dots = buildDots();
-const pin = toGrid(HOME.lon, HOME.lat);
-
 const latest = [...sales.countries].sort((a, b) => b.since.localeCompare(a.since))[0];
 
-const fmt = (iso: string) =>
-  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  });
+// Each cell becomes { ch, cls, code }; runs of identical cells are merged into one span.
+type Cell = { ch: string; cls: string; code: string };
+const grid = buildGrid();
+const cells: Cell[][] = grid.map((row) =>
+  row.map((code) =>
+    !code ? { ch: SEA, cls: '', code } : sold.has(code) ? { ch: SOLD, cls: 'on', code } : { ch: LAND, cls: 'land', code },
+  ),
+);
 
-const byCountry = Map.groupBy(dots, (d) => d.code);
+const pin = toCell(HOME.lon, HOME.lat);
+cells[pin.row][pin.col] = { ch: PIN, cls: 'pin', code: '' };
+// Write the label into the sea to the west of the pin, if there is room.
+const labelStart = pin.col - HOME.label.length;
+if (labelStart >= 0 && grid[pin.row].slice(labelStart, pin.col).every((c) => !c)) {
+  [...HOME.label].forEach((ch, i) => (cells[pin.row][labelStart + i] = { ch, cls: 'home', code: '' }));
+}
+
+const rows = cells.map((row) => {
+  const runs: Cell[] = [];
+  for (const c of row) {
+    const last = runs.at(-1);
+    if (last && last.cls === c.cls && last.code === c.code) last.ch += c.ch;
+    else runs.push({ ...c });
+  }
+  return runs;
+});
+
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+const mapHtml = rows
+  .map((runs) =>
+    runs
+      .map((r) =>
+        !r.cls
+          ? r.ch
+          : r.code
+            ? `<span class="${r.cls}" data-c="${r.code}" title="${esc(countryName(r.code))}">${r.ch}</span>`
+            : `<span class="${r.cls}">${esc(r.ch)}</span>`,
+      )
+      .join(''),
+  )
+  .join('\n');
+
 ---
 
 <Base title="Sales map · David Cardeña" description="Every country where someone has bought one of my apps." wide>
   <section class="intro">
     <h1 class="label">Sales map</h1>
-    <p>Every highlighted country is somewhere someone has bought one of my apps. The map redraws itself as new countries join.</p>
+    <p>Every <span class="on">#</span> is a country where someone has bought one of my apps. The map redraws itself as new countries join.</p>
     {sales.sample && <p class="sample mono">[ sample data · not real sales yet ]</p>}
   </section>
 
   <div class="layout">
-    <figure class="map">
-      <svg viewBox={`0 0 ${COLS} ${ROWS}`} role="img" aria-label={`World map with ${sold.size} countries highlighted`}>
-        {
-          [...byCountry].map(([code, list]) => (
-            <g class={sold.has(code) ? 'on' : undefined}>
-              <title>{countryName(code)}</title>
-              {list.map((d) => (
-                <rect x={d.x - 0.36} y={d.y - 0.36} width="0.72" height="0.72" rx="0.14" />
-              ))}
-            </g>
-          ))
-        }
-        <g class="pin" transform={`translate(${pin.x} ${pin.y})`}>
-          <title>{HOME.name}</title>
-          <circle class="pulse" r="1.4" />
-          <path d="M0 0 C -0.2 -0.9 -1.3 -1.6 -1.3 -2.7 A 1.3 1.3 0 1 1 1.3 -2.7 C 1.3 -1.6 0.2 -0.9 0 0 Z" />
-          <circle class="hole" cy="-2.7" r="0.45" />
-        </g>
-      </svg>
+    <figure class="map" role="img" aria-label={`World map with ${sold.size} countries highlighted`}>
+      <pre aria-hidden="true" set:html={mapHtml} />
     </figure>
 
     <aside class="legend mono">
+      <p class="cmd"><span class="prompt">$</span> sales --summary</p>
       <dl>
-        <div>
-          <dt>Countries</dt>
-          <dd class="big">{sold.size}</dd>
-        </div>
+        <dt>countries</dt>
+        <dd><span class="big">{sold.size}</span></dd>
         {
           latest && (
-            <div>
-              <dt>Latest unlocked</dt>
+            <>
+              <dt>latest</dt>
               <dd>
-                <span class="swatch" aria-hidden="true" />
-                {countryName(latest.code)}
-                <span class="muted"> · {fmt(latest.since)}</span>
+                <span class="on">#</span> {countryName(latest.code)}{' '}
+                <span class="muted">· {latest.since}</span>
               </dd>
-            </div>
+            </>
           )
         }
-        <div>
-          <dt>Home</dt>
-          <dd>
-            <span class="pin-key" aria-hidden="true" />
-            A Coruña, Spain
-          </dd>
-        </div>
-        <div>
-          <dt>Updated</dt>
-          <dd class="muted">{fmt(sales.updated)}</dd>
-        </div>
+        <dt>home</dt>
+        <dd><span class="pin">@</span> A Coruña, ES</dd>
+        <dt>updated</dt>
+        <dd class="muted">{sales.updated}</dd>
+        <dt>cursor</dt>
+        <dd class="hover muted">–</dd>
       </dl>
     </aside>
   </div>
 </Base>
 
-<style>
+<style define:vars={{ cols: COLS }}>
   .intro {
     max-width: 640px;
     padding-top: 40px;
@@ -99,99 +110,105 @@ const byCountry = Map.groupBy(dots, (d) => d.code);
   }
   .layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 200px;
+    grid-template-columns: minmax(0, 1fr) 250px;
     gap: 40px;
     align-items: end;
     margin-top: 48px;
   }
   .map {
     margin: 0;
+    container-type: inline-size;
   }
-  svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: visible;
+  pre {
+    margin: 0;
+    /* JetBrains Mono advances 0.6em per character: fit every column in the width. */
+    font-size: calc(100cqi / (var(--cols) * 0.6));
+    line-height: 1.2;
+    color: var(--muted);
+    user-select: none;
   }
-  rect {
-    fill: var(--dot);
-    transition: fill 0.2s;
+  pre :global(.land) {
+    color: var(--land);
+    cursor: default;
   }
-  .on rect {
-    fill: var(--accent);
+  .on,
+  pre :global(.on) {
+    color: var(--accent);
+    font-weight: 700;
+    cursor: default;
   }
-  g:hover rect {
-    fill: var(--muted);
+  .pin {
+    color: var(--fg);
+    font-weight: 700;
   }
-  .on:hover rect {
-    fill: var(--fg);
+  pre :global(.pin) {
+    color: var(--fg);
+    font-weight: 700;
+    animation: blink 1.6s steps(1) infinite;
   }
-  .pin path {
-    fill: var(--fg);
+  pre :global(.home) {
+    color: var(--muted);
   }
-  .pin .hole {
-    fill: var(--bg);
+  pre :global(.hot) {
+    color: var(--fg);
   }
-  .pulse {
-    fill: none;
-    stroke: var(--fg);
-    stroke-width: 0.15;
-    transform-origin: 0 0;
-    animation: pulse 2.4s ease-out infinite;
-  }
-  @keyframes pulse {
-    from {
-      transform: scale(0.3);
-      opacity: 0.9;
+  @keyframes blink {
+    50% {
+      opacity: 0.25;
     }
-    to {
-      transform: scale(2.2);
-      opacity: 0;
-    }
+  }
+  .cmd {
+    margin: 0 0 16px;
+    color: var(--muted);
+  }
+  .prompt {
+    color: var(--accent);
   }
   dl {
     margin: 0;
     display: grid;
-    gap: 22px;
+    grid-template-columns: 11ch 1fr;
+    gap: 10px 0;
+    font-size: 13px;
+    align-items: baseline;
   }
   dt {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
     color: var(--muted);
-    margin-bottom: 4px;
   }
   dd {
     margin: 0;
-    font-size: 13px;
+    min-width: 0;
   }
   .big {
-    font-size: 32px;
+    font-size: 26px;
     line-height: 1;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-  }
-  .swatch,
-  .pin-key {
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    margin-right: 6px;
-    border-radius: 2px;
-    background: var(--accent);
-  }
-  .pin-key {
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    background: var(--fg);
   }
   @media (max-width: 760px) {
     .layout {
       grid-template-columns: 1fr;
       gap: 28px;
     }
-    dl {
-      grid-template-columns: 1fr 1fr;
-    }
   }
 </style>
+
+<script>
+  const map = document.querySelector('.map pre');
+  const out = document.querySelector('.legend .hover');
+  let current = '';
+
+  const show = (code: string, name: string) => {
+    if (code === current) return;
+    map?.querySelectorAll('.hot').forEach((el) => el.classList.remove('hot'));
+    current = code;
+    if (code) map?.querySelectorAll(`[data-c="${code}"]`).forEach((el) => el.classList.add('hot'));
+    if (out) out.textContent = name || '–';
+  };
+
+  map?.addEventListener('pointerover', (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>('[data-c]');
+    show(el?.dataset.c ?? '', el?.title ?? '');
+  });
+  map?.addEventListener('pointerleave', () => show('', ''));
+</script>
