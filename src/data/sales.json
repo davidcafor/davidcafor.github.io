@@ -1,0 +1,18 @@
+{
+  "sample": true,
+  "updated": "2026-10-16",
+  "countries": [
+    { "code": "ES", "since": "2026-02-03" },
+    { "code": "US", "since": "2026-02-04" },
+    { "code": "MX", "since": "2026-02-11" },
+    { "code": "GB", "since": "2026-02-19" },
+    { "code": "DE", "since": "2026-03-02" },
+    { "code": "FR", "since": "2026-03-15" },
+    { "code": "AR", "since": "2026-04-08" },
+    { "code": "CA", "since": "2026-04-21" },
+    { "code": "IT", "since": "2026-05-30" },
+    { "code": "BR", "since": "2026-06-14" },
+    { "code": "AU", "since": "2026-07-26" },
+    { "code": "JP", "since": "2026-10-12" }
+  ]
+}

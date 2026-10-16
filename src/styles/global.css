@@ -4,6 +4,7 @@
   --muted: #6b6a66;
   --line: #e2e0d9;
   --accent: #c8841a;
+  --dot: #e2ded4;
   --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   color-scheme: light;
 }
@@ -15,6 +16,7 @@
     --muted: #8a8984;
     --line: #232322;
     --accent: #e3a33c;
+    --dot: #222220;
     color-scheme: dark;
   }
 }
@@ -25,6 +27,7 @@
   --muted: #8a8984;
   --line: #232322;
   --accent: #e3a33c;
+  --dot: #222220;
   color-scheme: dark;
 }
 
@@ -70,6 +73,7 @@ a:hover {
 
 .wrap {
   max-width: 640px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
