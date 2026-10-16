@@ -9,12 +9,12 @@ countries.registerLocale(en);
 // A monospace character cell is twice as tall as it is wide, so rows cover
 // twice as many degrees as columns to keep the map's proportions.
 export const GRID = {
-  lonStep: 2.5,
-  latStep: 5,
+  lonStep: 1.5,
+  latStep: 3,
   west: -180,
   east: 180,
-  north: 85,
-  south: -55, // Antarctica is left out
+  north: 84,
+  south: -57, // Antarctica is left out
 };
 
 export const COLS = Math.round((GRID.east - GRID.west) / GRID.lonStep);

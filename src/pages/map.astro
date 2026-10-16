@@ -110,9 +110,7 @@ const mapHtml = rows
   }
   .layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 250px;
     gap: 40px;
-    align-items: end;
     margin-top: 48px;
   }
   .map {
@@ -167,10 +165,17 @@ const mapHtml = rows
   dl {
     margin: 0;
     display: grid;
-    grid-template-columns: 11ch 1fr;
-    gap: 10px 0;
+    grid-template-columns: repeat(5, auto);
+    justify-content: start;
+    column-gap: 56px;
+    row-gap: 6px;
     font-size: 13px;
-    align-items: baseline;
+  }
+  dt {
+    grid-row: 1;
+  }
+  dd {
+    grid-row: 2;
   }
   dt {
     color: var(--muted);
@@ -180,15 +185,23 @@ const mapHtml = rows
     min-width: 0;
   }
   .big {
-    font-size: 26px;
+    font-size: 22px;
     line-height: 1;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
   @media (max-width: 760px) {
     .layout {
-      grid-template-columns: 1fr;
       gap: 28px;
+    }
+    dl {
+      grid-template-columns: 11ch 1fr;
+      row-gap: 10px;
+      align-items: baseline;
+    }
+    dt,
+    dd {
+      grid-row: auto;
     }
   }
 </style>
