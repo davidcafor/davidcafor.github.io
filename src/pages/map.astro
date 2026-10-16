@@ -16,6 +16,8 @@ const latest = [...sales.countries].sort((a, b) => b.since.localeCompare(a.since
 // Each cell becomes { ch, cls, code }; runs of identical cells are merged into one span.
 type Cell = { ch: string; cls: string; code: string };
 const grid = buildGrid();
+const total = new Set(grid.flat().filter(Boolean)).size;
+const pct = Math.round((sold.size / total) * 100);
 const cells: Cell[][] = grid.map((row) =>
   row.map((code) =>
     !code ? { ch: SEA, cls: '', code } : sold.has(code) ? { ch: SOLD, cls: 'on', code } : { ch: LAND, cls: 'land', code },
@@ -73,7 +75,10 @@ const mapHtml = rows
       <p class="cmd"><span class="prompt">$</span> sales --summary</p>
       <dl>
         <dt>countries</dt>
-        <dd><span class="big">{sold.size}</span></dd>
+        <dd>
+          <span class="big">{sold.size}</span><span class="muted">/{total}</span>
+          <span class="muted"> · {pct}%</span>
+        </dd>
         {
           latest && (
             <>
