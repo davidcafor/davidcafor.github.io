@@ -4,6 +4,7 @@
   --muted: #6b6a66;
   --line: #e2e0d9;
   --accent: #c8841a;
+  --pin: #d93a2b;
   --land: #9e998d;
   --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   color-scheme: light;
@@ -16,6 +17,7 @@
     --muted: #8a8984;
     --line: #232322;
     --accent: #e3a33c;
+    --pin: #ff5a47;
     --land: #6a6863;
     color-scheme: dark;
   }
@@ -27,6 +29,7 @@
   --muted: #8a8984;
   --line: #232322;
   --accent: #e3a33c;
+  --pin: #ff5a47;
   --land: #6a6863;
   color-scheme: dark;
 }

@@ -4,15 +4,18 @@ import { buildGrid, COLS, countryName, toCell } from '../lib/worldGrid';
 import sales from '../data/sales.json';
 import { appStoreCountries } from '../data/appStoreCountries';
 
-const HOME = { label: 'a coruña ─', lon: -8.41, lat: 43.37 };
+const HOME = { label: 'A Coruña · home', lon: -8.41, lat: 43.37 };
 
 const SEA = ' ';
 const LAND = ':';
 const SOLD = '#';
-const PIN = '@';
 
 const sold = new Set(sales.countries.map((c) => c.code));
-const latest = [...sales.countries].sort((a, b) => b.since.localeCompare(a.since))[0];
+const bySince = [...sales.countries].sort((a, b) => a.since.localeCompare(b.since));
+const first = bySince[0];
+const latest = bySince.at(-1);
+const thisYear = new Date().getFullYear().toString();
+const newThisYear = sales.countries.filter((c) => c.since.startsWith(thisYear)).length;
 
 // Each cell becomes { ch, cls, code }; runs of identical cells are merged into one span.
 type Cell = { ch: string; cls: string; code: string };
@@ -27,13 +30,9 @@ const cells: Cell[][] = grid.map((row) =>
   ),
 );
 
+// Home is drawn as a dot over the map, centred on its cell.
 const pin = toCell(HOME.lon, HOME.lat);
-cells[pin.row][pin.col] = { ch: PIN, cls: 'pin', code: '' };
-// Write the label into the sea to the west of the pin, if there is room.
-const labelStart = pin.col - HOME.label.length;
-if (labelStart >= 0 && grid[pin.row].slice(labelStart, pin.col).every((c) => !c)) {
-  [...HOME.label].forEach((ch, i) => (cells[pin.row][labelStart + i] = { ch, cls: 'home', code: '' }));
-}
+const pinPos = `left: ${((pin.col + 0.5) / COLS) * 100}%; top: ${((pin.row + 0.5) / grid.length) * 100}%;`;
 
 const rows = cells.map((row) => {
   const runs: Cell[] = [];
@@ -78,6 +77,9 @@ const mapHtml = rows
   <div class="layout">
     <figure class="map" role="img" aria-label={`World map with ${sold.size} countries highlighted`}>
       <pre aria-hidden="true" set:html={mapHtml} />
+      <span class="home-pin" style={pinPos} tabindex="0" aria-label={HOME.label}>
+        <span class="tag mono">{HOME.label}</span>
+      </span>
     </figure>
 
     <aside class="legend mono">
@@ -99,8 +101,18 @@ const mapHtml = rows
             </>
           )
         }
-        <dt>home</dt>
-        <dd><span class="pin">@</span> A Coruña, ES</dd>
+        {
+          first && (
+            <>
+              <dt>first</dt>
+              <dd>
+                {countryName(first.code)} <span class="muted">· {first.since}</span>
+              </dd>
+            </>
+          )
+        }
+        <dt>new in {thisYear}</dt>
+        <dd>+{newThisYear}</dd>
         <dt>updated</dt>
         <dd class="muted">{sales.updated}</dd>
         <dt>cursor</dt>
@@ -149,24 +161,58 @@ const mapHtml = rows
     font-weight: 700;
     cursor: default;
   }
-  .pin {
-    color: var(--fg);
-    font-weight: 700;
-  }
-  pre :global(.pin) {
-    color: var(--fg);
-    font-weight: 700;
-    animation: blink 1.6s steps(1) infinite;
-  }
-  pre :global(.home) {
-    color: var(--muted);
-  }
   pre :global(.hot) {
     color: var(--fg);
   }
-  @keyframes blink {
-    50% {
-      opacity: 0.25;
+  .map {
+    position: relative;
+  }
+  /* Home: a red dot with a pulsing ring; its label shows on hover or focus. */
+  .home-pin {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    border-radius: 50%;
+    background: var(--pin);
+    cursor: default;
+    outline-offset: 4px;
+  }
+  .home-pin::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--pin);
+    animation: pulse 1.8s ease-out infinite;
+  }
+  .tag {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    padding: 2px 8px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--fg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+  .home-pin:hover .tag,
+  .home-pin:focus-visible .tag {
+    opacity: 1;
+  }
+  @keyframes pulse {
+    to {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .home-pin::after {
+      animation: none;
     }
   }
   .cmd {
@@ -179,7 +225,7 @@ const mapHtml = rows
   dl {
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(6, auto);
     justify-content: start;
     column-gap: 56px;
     row-gap: 6px;
