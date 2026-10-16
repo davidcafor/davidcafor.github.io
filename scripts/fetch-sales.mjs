@@ -119,7 +119,7 @@ try {
 
   const data = { sample: false, updated: new Date().toISOString().slice(0, 10), countries };
   await writeFile(OUT, JSON.stringify(data, null, 2) + '\n');
-  console.log(`Wrote ${countries.length} countries; latest ${countries.at(-1).code} on ${countries.at(-1).since}.`);
+  console.log(`Wrote ${countries.length} countries (${countries.map((c) => c.code).join(' ')}); latest ${countries.at(-1).code} on ${countries.at(-1).since}.`);
 } catch (err) {
   console.log(`::warning::RevenueCat sales map not updated: ${err.message}`);
   await markError();

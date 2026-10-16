@@ -11,11 +11,7 @@ const LAND = ':';
 const SOLD = '#';
 
 const sold = new Set(sales.countries.map((c) => c.code));
-const bySince = [...sales.countries].sort((a, b) => a.since.localeCompare(b.since));
-const first = bySince[0];
-const latest = bySince.at(-1);
-const thisYear = new Date().getFullYear().toString();
-const newThisYear = sales.countries.filter((c) => c.since.startsWith(thisYear)).length;
+const latest = [...sales.countries].sort((a, b) => b.since.localeCompare(a.since))[0];
 
 // Each cell becomes { ch, cls, code }; runs of identical cells are merged into one span.
 type Cell = { ch: string; cls: string; code: string };
@@ -101,18 +97,6 @@ const mapHtml = rows
             </>
           )
         }
-        {
-          first && (
-            <>
-              <dt>first</dt>
-              <dd>
-                {countryName(first.code)} <span class="muted">· {first.since}</span>
-              </dd>
-            </>
-          )
-        }
-        <dt>new in {thisYear}</dt>
-        <dd>+{newThisYear}</dd>
         <dt>updated</dt>
         <dd class="muted">{sales.updated}</dd>
         <dt>cursor</dt>
@@ -170,9 +154,9 @@ const mapHtml = rows
   /* Home: a red dot with a pulsing ring; its label shows on hover or focus. */
   .home-pin {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    margin: -5px 0 0 -5px;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
     border-radius: 50%;
     background: var(--pin);
     cursor: default;
@@ -183,7 +167,7 @@ const mapHtml = rows
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 2px solid var(--pin);
+    border: 1.5px solid var(--pin);
     animation: pulse 1.8s ease-out infinite;
   }
   .tag {
@@ -206,7 +190,7 @@ const mapHtml = rows
   }
   @keyframes pulse {
     to {
-      transform: scale(3);
+      transform: scale(4);
       opacity: 0;
     }
   }
@@ -225,7 +209,7 @@ const mapHtml = rows
   dl {
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(4, auto);
     justify-content: start;
     column-gap: 56px;
     row-gap: 6px;
