@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+import AsciiBackground from '../components/AsciiBackground.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = site.name, description = site.role } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0b0b" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      try {
+        const t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <AsciiBackground />
+    <header class="wrap top">
+      <a href="/" class="mono home">{site.handle}</a>
+      <ThemeToggle />
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="wrap foot mono muted">
+      <span>© {new Date().getFullYear()} {site.name}</span>
+      <span>{site.location}</span>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+  .home {
+    text-decoration: none;
+  }
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    margin-top: 72px;
+    border-top: 1px solid var(--line);
+  }
+</style>

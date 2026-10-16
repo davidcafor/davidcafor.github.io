@@ -1,0 +1,120 @@
+---
+import QRCode from 'qrcode';
+
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+const qr = await QRCode.toString(url, { type: 'svg', margin: 0, errorCorrectionLevel: 'M' });
+---
+
+<div class="store">
+  <a class="badge" href={url} target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22">
+      <path
+        fill="currentColor"
+        d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"
+      ></path>
+    </svg>
+    <span>
+      <small>Download on the</small>
+      <strong>App Store</strong>
+    </span>
+  </a>
+  <div class="divider" aria-hidden="true"></div>
+  <div class="qr-wrap">
+    <div class="qr" set:html={qr} role="img" aria-label="QR code to the App Store page" />
+    <p class="mono muted">On a computer? Scan with your iPhone camera.</p>
+  </div>
+</div>
+
+<style>
+  .store {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 18px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px 7px 10px;
+    border-radius: 9px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #a6a6a6;
+    text-decoration: none;
+    line-height: 1;
+    white-space: nowrap;
+    transition: transform 0.15s;
+  }
+  .badge:hover {
+    transform: translateY(-1px);
+  }
+  .badge span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .badge small {
+    font-size: 10px;
+    letter-spacing: 0.01em;
+  }
+  .badge strong {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .divider {
+    align-self: stretch;
+    width: 1px;
+    background: var(--line);
+  }
+  .qr-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .qr {
+    flex: none;
+    width: 92px;
+    height: 92px;
+    padding: 8px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+  .qr :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .qr-wrap p {
+    margin: 0;
+    max-width: 150px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  /* Phones can tap the badge; the QR code is only useful on a computer. */
+  @media (max-width: 560px) {
+    .divider,
+    .qr-wrap {
+      display: none;
+    }
+    .store {
+      padding: 0;
+      border: 0;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+</style>
