@@ -14,15 +14,17 @@ interface Props {
   alternates?: { lang: string; href: string }[];
   /** Accent colours for pages that carry an app's own brand. */
   accent?: { light: string; dark: string };
+  /** Extra class on <html> for an app's own look, e.g. "skin-hue9". */
+  skin?: string;
 }
 
-const { title = site.name, description = site.role, lang = 'en', alternates = [], accent } = Astro.props;
+const { title = site.name, description = site.role, lang = 'en', alternates = [], accent, skin } = Astro.props;
 const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
 const crumb = Astro.props.crumb ?? (onMap ? '/map' : '');
 ---
 
 <!doctype html>
-<html lang={lang} style={accent && `--app-light: ${accent.light}; --app-dark: ${accent.dark}`} class:list={{ branded: accent }}>
+<html lang={lang} style={accent && `--app-light: ${accent.light}; --app-dark: ${accent.dark}`} class:list={[{ branded: accent }, skin]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
