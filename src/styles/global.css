@@ -34,6 +34,19 @@
   color-scheme: dark;
 }
 
+/* App pages swap the accent for the app's own colour. */
+:root.branded {
+  --accent: var(--app-light);
+}
+@media (prefers-color-scheme: dark) {
+  :root.branded:not([data-theme='light']) {
+    --accent: var(--app-dark);
+  }
+}
+:root.branded[data-theme='dark'] {
+  --accent: var(--app-dark);
+}
+
 *,
 *::before,
 *::after {

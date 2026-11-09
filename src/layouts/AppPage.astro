@@ -1,0 +1,116 @@
+---
+// Shell for an app's own site (/hue9, /oraia): app nav, language picker and brand accent.
+import Base from './Base.astro';
+
+export type Lang = { code: string; label: string };
+export type NavItem = { label: string; href: string; external?: boolean };
+
+interface Props {
+  title: string;
+  description: string;
+  /** App slug, also the folder: "hue9" → /hue9 */
+  app: string;
+  lang: string;
+  langs: Lang[];
+  /** Page path inside the app in every language, e.g. "privacy/" ('' for the overview). */
+  page: string;
+  nav: NavItem[];
+  accent: { light: string; dark: string };
+}
+
+const { title, description, app, lang, langs, page, nav, accent } = Astro.props;
+const href = (code: string, p = page) => `/${app}/${code === langs[0].code ? '' : `${code.toLowerCase()}/`}${p}`;
+const here = Astro.url.pathname;
+const current = langs.find((l) => l.code === lang)!;
+---
+
+<Base
+  title={title}
+  description={description}
+  lang={lang}
+  crumb={`/${app}`}
+  accent={accent}
+  alternates={langs.map((l) => ({ lang: l.code, href: href(l.code) }))}
+>
+  <Fragment slot="nav">
+    {
+      nav.map((n) => (
+        <a
+          href={n.href}
+          class="nav-link"
+          aria-current={here === n.href ? 'page' : undefined}
+          target={n.external ? '_blank' : undefined}
+          rel={n.external ? 'noopener' : undefined}
+        >
+          {n.label.toLowerCase()}
+        </a>
+      ))
+    }
+    {
+      langs.length > 1 && (
+        <details class="lang">
+          <summary aria-label={`Language: ${current.label}`}>[ {lang.slice(0, 2).toLowerCase()} ]</summary>
+          <ul>
+            {langs.map((l) => (
+              <li>
+                <a href={href(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? 'true' : undefined}>
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )
+    }
+  </Fragment>
+  <slot />
+</Base>
+
+<style>
+  .nav-link[aria-current='page'] {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
+  .lang {
+    position: relative;
+  }
+  .lang summary {
+    list-style: none;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .lang summary::-webkit-details-marker {
+    display: none;
+  }
+  .lang summary:hover,
+  .lang[open] summary {
+    color: var(--fg);
+  }
+  .lang ul {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 10;
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    min-width: 150px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+  }
+  .lang a {
+    display: block;
+    padding: 4px 14px;
+    text-decoration: none;
+    color: var(--muted);
+  }
+  .lang a:hover,
+  .lang a[aria-current] {
+    color: var(--fg);
+  }
+  .lang a[aria-current]::before {
+    content: '> ';
+    color: var(--accent);
+  }
+</style>
