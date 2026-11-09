@@ -7,14 +7,22 @@ import { site } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
+  lang?: string;
+  /** Path shown after ~/davidcafor in the header, e.g. "/hue9". */
+  crumb?: string;
+  /** Pages in other languages, for hreflang links. */
+  alternates?: { lang: string; href: string }[];
+  /** Accent colours for pages that carry an app's own brand. */
+  accent?: { light: string; dark: string };
 }
 
-const { title = site.name, description = site.role } = Astro.props;
+const { title = site.name, description = site.role, lang = 'en', alternates = [], accent } = Astro.props;
 const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
+const crumb = Astro.props.crumb ?? (onMap ? '/map' : '');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} style={accent && `--app-light: ${accent.light}; --app-dark: ${accent.dark}`} class:list={{ branded: accent }}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,6 +34,7 @@ const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
     <meta name="theme-color" content="#f0ece3" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#21211f" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={new URL(a.href, Astro.site)} />)}
     <script is:inline>
       try {
         const t = localStorage.getItem('theme');
@@ -35,9 +44,9 @@ const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
   </head>
   <body>
     <header class="wrap top">
-      <a href="/" class="mono home"><span class="prompt">~/</span>{site.handle}{onMap && '/map'}</a>
+      <a href="/" class="mono home"><span class="prompt">~/</span>{site.handle}{crumb}</a>
       <nav class="mono">
-        {!onMap && <a href="/map" class="nav-link">map</a>}
+        <slot name="nav">{!onMap && <a href="/map" class="nav-link">map</a>}</slot>
         <ThemeToggle />
       </nav>
     </header>
@@ -64,8 +73,9 @@ const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
   }
   nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 18px;
+    gap: 8px 18px;
   }
   .nav-link {
     color: var(--muted);
@@ -80,6 +90,8 @@ const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
   .top {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
     justify-content: space-between;
     align-items: center;
     padding-top: 28px;
