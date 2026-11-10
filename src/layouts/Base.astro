@@ -16,9 +16,11 @@ interface Props {
   accent?: { light: string; dark: string };
   /** Extra class on <html> for an app's own look, e.g. "skin-hue9". */
   skin?: string;
+  /** Name after © in the footer; app pages show the app's name, never David's. */
+  owner?: string;
 }
 
-const { title = site.name, description = site.role, lang = 'en', alternates = [], accent, skin } = Astro.props;
+const { title = site.name, description = site.role, lang = 'en', alternates = [], accent, skin, owner = site.name } = Astro.props;
 const onMap = Astro.url.pathname.replace(/\/$/, '') === '/map';
 const crumb = Astro.props.crumb ?? (onMap ? '/map' : '');
 ---
@@ -56,7 +58,7 @@ const crumb = Astro.props.crumb ?? (onMap ? '/map' : '');
       <slot />
     </main>
     <footer class="wrap foot mono muted">
-      <span>© {new Date().getFullYear()} {site.name}</span>
+      <span>© {new Date().getFullYear()} {owner}</span>
       <span>{site.location}</span>
     </footer>
   </body>

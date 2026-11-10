@@ -33,6 +33,7 @@ const current = langs.find((l) => l.code === lang)!;
   crumb={`/${app}`}
   accent={accent}
   skin={skin}
+  owner={app.charAt(0).toUpperCase() + app.slice(1)}
   alternates={langs.map((l) => ({ lang: l.code, href: href(l.code) }))}
 >
   <Fragment slot="nav">
