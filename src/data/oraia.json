@@ -7,7 +7,7 @@
    "sections": [
     {
      "title": "Get in touch",
-     "html": "<p>For help with Oraia or privacy questions, contact David Cardeña at <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">davidcafor@gmail.com</a>.</p><p>Include your app version, iOS version and a description of the issue. Please avoid sending private journal entries, passwords or payment details.</p>"
+     "html": "<p>For help with Oraia or privacy questions, <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">contact support</a>.</p><p>Include your app version, iOS version and a description of the issue. Please avoid sending private journal entries, passwords or payment details.</p>"
     },
     {
      "title": "Purchases and Premium",
@@ -30,7 +30,7 @@
    "sections": [
     {
      "title": "Responsible developer and contact",
-     "html": "<p>Oraia is provided by David Cardeña, Spain. For privacy questions, rights requests or support, email davidcafor@gmail.com. This policy covers the Oraia iPhone app. Public privacy and support information is also available at <a href=\"https://davidcafor.github.io/oraia-legal/\">https://davidcafor.github.io/oraia-legal/</a>.</p>"
+     "html": "<p>Oraia is provided by an independent developer based in Spain. For privacy questions, rights requests or support, <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">contact support</a>. This policy covers the Oraia iPhone app. Public privacy and support information is also available at <a href=\"https://davidcafor.github.io/oraia-legal/\">https://davidcafor.github.io/oraia-legal/</a>.</p>"
     },
     {
      "title": "Your private prayer content",
@@ -62,7 +62,7 @@
     },
     {
      "title": "Your rights",
-     "html": "<p>Depending on your location and applicable law, you may request access, correction, deletion, restriction or portability of personal data, and object to processing based on legitimate interests. Contact davidcafor@gmail.com. The developer cannot retrieve prayer content that remains solely on your device; use the in-app controls for that content. You may also complain to your local data-protection authority; in Spain, the AEPD: <a href=\"https://www.aepd.es/\">https://www.aepd.es/</a>.</p>"
+     "html": "<p>Depending on your location and applicable law, you may request access, correction, deletion, restriction or portability of personal data, and object to processing based on legitimate interests. <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">Contact support</a>. The developer cannot retrieve prayer content that remains solely on your device; use the in-app controls for that content. You may also complain to your local data-protection authority; in Spain, the AEPD: <a href=\"https://www.aepd.es/\">https://www.aepd.es/</a>.</p>"
     },
     {
      "title": "Children",
@@ -101,7 +101,7 @@
     },
     {
      "title": "Contact and privacy",
-     "html": "<p>Developer: David Cardeña, Spain. Email: <a href=\"mailto:davidcafor@gmail.com\">davidcafor@gmail.com</a>. Read the <a href=\"/oraia/privacy/\">privacy policy</a>.</p>"
+     "html": "<p>Developer: an independent developer based in Spain. <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">Contact support</a>. Read the <a href=\"/oraia/privacy/\">privacy policy</a>.</p>"
     }
    ]
   }
@@ -114,7 +114,7 @@
    "sections": [
     {
      "title": "Contacto",
-     "html": "<p>Para recibir ayuda con Oraia o consultar sobre privacidad, contacta con David Cardeña en <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">davidcafor@gmail.com</a>.</p><p>Indica la versión de la app, la versión de iOS y qué ocurre. Evita enviar entradas privadas del diario, contraseñas o datos de pago.</p>"
+     "html": "<p>Para recibir ayuda con Oraia o consultar sobre privacidad, <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">contacta con soporte</a>.</p><p>Indica la versión de la app, la versión de iOS y qué ocurre. Evita enviar entradas privadas del diario, contraseñas o datos de pago.</p>"
     },
     {
      "title": "Compras y Premium",
@@ -137,7 +137,7 @@
    "sections": [
     {
      "title": "Responsable y contacto",
-     "html": "<p>Oraia la ofrece David Cardeña, España. Para consultas de privacidad, ejercicio de derechos o soporte, escribe a davidcafor@gmail.com. Esta política cubre la app Oraia para iPhone. La información pública de privacidad y soporte también está disponible en <a href=\"https://davidcafor.github.io/oraia-legal/\">https://davidcafor.github.io/oraia-legal/</a>.</p>"
+     "html": "<p>Oraia la ofrece un desarrollador independiente con sede en España. Para consultas de privacidad, ejercicio de derechos o soporte, <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">contacta con soporte</a>. Esta política cubre la app Oraia para iPhone. La información pública de privacidad y soporte también está disponible en <a href=\"https://davidcafor.github.io/oraia-legal/\">https://davidcafor.github.io/oraia-legal/</a>.</p>"
     },
     {
      "title": "Tu contenido privado de oración",
@@ -169,7 +169,7 @@
     },
     {
      "title": "Tus derechos",
-     "html": "<p>Según tu ubicación y la legislación aplicable, puedes solicitar acceso, rectificación, supresión, limitación o portabilidad de datos personales, y oponerte al tratamiento basado en interés legítimo. Escribe a davidcafor@gmail.com. El desarrollador no puede recuperar el contenido de oración que permanece únicamente en tu dispositivo; utiliza los controles de la app para ese contenido. También puedes reclamar ante tu autoridad de protección de datos; en España, la AEPD: <a href=\"https://www.aepd.es/\">https://www.aepd.es/</a>.</p>"
+     "html": "<p>Según tu ubicación y la legislación aplicable, puedes solicitar acceso, rectificación, supresión, limitación o portabilidad de datos personales, y oponerte al tratamiento basado en interés legítimo. <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">Contacta con soporte</a>. El desarrollador no puede recuperar el contenido de oración que permanece únicamente en tu dispositivo; utiliza los controles de la app para ese contenido. También puedes reclamar ante tu autoridad de protección de datos; en España, la AEPD: <a href=\"https://www.aepd.es/\">https://www.aepd.es/</a>.</p>"
     },
     {
      "title": "Menores",
@@ -208,7 +208,7 @@
     },
     {
      "title": "Contacto y privacidad",
-     "html": "<p>Desarrollador: David Cardeña, España. Correo: <a href=\"mailto:davidcafor@gmail.com\">davidcafor@gmail.com</a>. Consulta la <a href=\"/oraia/es/privacy/\">política de privacidad</a>.</p>"
+     "html": "<p>Desarrollador: un desarrollador independiente con sede en España. <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">Contactar con soporte</a>. Consulta la <a href=\"/oraia/es/privacy/\">política de privacidad</a>.</p>"
     }
    ]
   }
