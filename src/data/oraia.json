@@ -7,7 +7,7 @@
    "sections": [
     {
      "title": "Get in touch",
-     "html": "<p>For help with Oraia or privacy questions, <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">contact support</a>.</p><p>Include your app version, iOS version and a description of the issue. Please avoid sending private journal entries, passwords or payment details.</p>"
+     "html": "<p>For help with Oraia or privacy questions, use the Contact support button below.</p><p>Include your app version, iOS version and a description of the issue. Please avoid sending private journal entries, passwords or payment details.</p>"
     },
     {
      "title": "Purchases and Premium",
@@ -114,7 +114,7 @@
    "sections": [
     {
      "title": "Contacto",
-     "html": "<p>Para recibir ayuda con Oraia o consultar sobre privacidad, <a href=\"mailto:davidcafor@gmail.com?subject=Oraia%20Support\">contacta con soporte</a>.</p><p>Indica la versión de la app, la versión de iOS y qué ocurre. Evita enviar entradas privadas del diario, contraseñas o datos de pago.</p>"
+     "html": "<p>Para recibir ayuda con Oraia o consultar sobre privacidad, usa el botón Contactar con soporte de abajo.</p><p>Indica la versión de la app, la versión de iOS y qué ocurre. Evita enviar entradas privadas del diario, contraseñas o datos de pago.</p>"
     },
     {
      "title": "Compras y Premium",
